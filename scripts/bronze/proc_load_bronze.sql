@@ -10,10 +10,15 @@ Script Purpose:
     - Load data from csv Files to bronze tables.
 
 Parameters:
-	  This stored procedure does not accept any parameters or return any values.
+    This stored procedure does not accept any parameters or return any values.
 
 Usage Example:
     CALL bronze.load_bronze;
+
+Very important note:
+    Change the csv file paths in 'COPY ... FROM' commands. 
+    If postgres can not access the files, in that case move the datasets folder to '/temp' directory in mac or 'c://TEMP' directory in case of windows.
+    Then provide those paths.
 ===============================================================================
 */
 
