@@ -17,8 +17,8 @@ Usage Example:
 ===============================================================================
 */
 
-DROP PROCEDURE IF EXISTS bronze.load_data;
-CREATE PROCEDURE bronze.load_data()
+DROP PROCEDURE IF EXISTS bronze.load_bronze;
+CREATE PROCEDURE bronze.load_bronze()
 LANGUAGE plpgsql
 AS $$
 DECLARE
