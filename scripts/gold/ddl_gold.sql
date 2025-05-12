@@ -16,18 +16,14 @@ Usage:
 
 --Dropping the fact table first because it depends on the dimension tables, 
 --postgres won't allow to drop dimension tables because of the dependency
-RAISE INFO 'Dropping gold.fact_sales view';
 DROP VIEW IF EXISTS gold.fact_sales;
 
-RAISE INFO 'Dropping gold.dim_products view';
 DROP VIEW IF EXISTS gold.dim_products;
 
-RAISE INFO 'Dropping gold.dim_customers view';
 DROP VIEW IF EXISTS gold.dim_customers;
 
 --Creating dimension views
 --products
-RAISE INFO 'Creating and loading data to view: gold.dim_products';
 CREATE VIEW gold.dim_products AS(
 	WITH joinedtable AS(
 		SELECT *
@@ -53,7 +49,6 @@ CREATE VIEW gold.dim_products AS(
 );
 
 --customers
-RAISE INFO 'Creating and loading data to view: gold.dim_customers';
 CREATE VIEW gold.dim_customers AS(
 	WITH joinedtable AS(
 		SELECT *
@@ -83,7 +78,6 @@ CREATE VIEW gold.dim_customers AS(
 
 --Creating fact view
 --sales
-RAISE INFO 'Creating and loading data to view: gold.fact_sales';
 CREATE VIEW gold.fact_sales AS(
 	WITH jointable AS (
 		SELECT * FROM
