@@ -16,8 +16,8 @@ Usage Example:
     CALL Silver.load_silver;
 ===============================================================================
 */
-DROP PROCEDURE IF EXISTS silver.load_data;
-CREATE PROCEDURE silver.load_data()
+DROP PROCEDURE IF EXISTS silver.load_silver;
+CREATE PROCEDURE silver.load_silver()
 LANGUAGE plpgsql
 AS $$
 DECLARE
