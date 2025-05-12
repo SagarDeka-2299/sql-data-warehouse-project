@@ -60,6 +60,43 @@ Develop SQL-based analytics to deliver detailed insights into:
 
 These insights empower stakeholders with key business metrics, enabling strategic decision-making.  
 
+___
+
+## ⚙️ Setup Instructions
+
+Follow these steps to set up the data warehouse project in PostgreSQL:
+
+1. **Create a PostgreSQL database manually**
+   Use your preferred method (GUI or terminal) to create a new PostgreSQL database.
+
+2. **Run `scripts/setup_schema.sql`**
+   This script will create all necessary schemas (`bronze`, `silver`, and `gold`) in the database.
+
+3. **Run `scripts/bronze/ddl_bronze.sql`**
+   This will create the staging tables inside the `bronze` schema where raw CSV data will be ingested.
+
+4. **Modify `scripts/bronze/proc_load_bronze.sql`**
+   Open this file and change the CSV file paths in the `COPY ... FROM` commands to point to the correct file locations on your system.
+   If PostgreSQL is unable to access the files from your current location, move the `datasets` folder to:
+
+   * `/tmp` directory on **Mac**, or
+   * `C://TEMP` directory on **Windows**
+
+   Then update the paths in the script to reflect this new location. After editing, run this script. It will create a stored procedure named `bronze.load_bronze`, which can be reused to load data from CSV files into the `bronze` layer.
+
+   At this point, the Bronze layer data staging is complete.
+
+5. **Run `scripts/silver/ddl_silver.sql`**
+   This script creates the transformed and cleaned tables in the `silver` schema.
+
+6. **Run `scripts/silver/proc_load_silver.sql`**
+   This creates a stored procedure named `silver.load_silver`, which will be reused to load transformed data into the `silver` layer tables.
+
+7. **Run `scripts/gold/ddl_gold.sql`**
+   This script creates views in the `gold` schema representing business-ready, analysis-friendly data. These views are reusable for reporting and analytics.
+
+---
+
 ## 🛡️ License
 
 This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and share this project with proper attribution.
